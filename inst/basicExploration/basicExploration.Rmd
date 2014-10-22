@@ -53,10 +53,6 @@ library('derfinder')
 
 #### Code setup
 
-## Use UCSC names by default
-seqlevelsStyle(fullRegions) <- chrsStyle
-names(fullCov) <- mapSeqlevels(names(fullCov), chrsStyle)
-
 ## For ggplot
 tmp <- fullRegions
 names(tmp) <- seq_len(length(tmp))
@@ -114,7 +110,8 @@ if(nBestRegions > 0) {
     if(packageVersion('derfinder') >= '0.0.60') {
         regionCoverage <- getRegionCoverage(fullCov = fullCov, 
             regions = fullRegions[seq_len(nBestRegions)],
-            chrsStyle = chrsStyle, verbose = FALSE)
+            chrsStyle = chrsStyle, species = species,
+            currentStyle = currentStyle, verbose = FALSE)
     } else {
         regionCoverage <- getRegionCoverage(fullCov = fullCov, 
             regions = fullRegions[seq_len(nBestRegions)],
@@ -540,13 +537,23 @@ for(j in n) {
     }
 }
 
+## How many permutations resulted in the original grouping rearrangement
+obs <- diag(length(m)) * sapply(
+    permuteDetail$group[ permuteDetail$permutation == 1], function(n) {
+  sum(optionsStats$groupInfo == n)
+})
+sameAsObs <- sapply(seq_len(length(seeds)), function(i) {
+    p <- as.matrix(permuteDetail[permuteDetail$permutation == i, m])
+    all((p - obs) == 0)
+})
+
 ## Print the summary
 summary(permuteDetail[, m])
 ```
 
-This table shows the summary per group of and can be used for fast detection of anomalies. `r ifelse(usedPermutations, '', 'Skipped because no permutations were used.')`
+This table shows the summary per group of how many samples were assigned to the group. It can be used for fast detection of anomalies. `r ifelse(usedPermutations, paste('Also note that', sum(sameAsObs), 'permutations out of', length(seeds), 'total permutations resulted in the same grouping as in the original observed data.'), 'Skipped because no permutations were used.')`
 
-Note that in `derfinder` `r citep(bib[['derfinder']])` the re-sampling of the samples is done without replacement. This is done in an effort to avoid singular model matrices. While the sample balance is the same across the permutations, what changes are the adjusted variables (including the column medians).
+Note that in `derfinder` the re-sampling of the samples is done without replacement. This is done to avoid singular model matrices. While the sample balance is the same across the permutations, what changes are the adjusted variables (including the column medians).
 
 ## Interactive
 
