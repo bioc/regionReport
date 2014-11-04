@@ -40,11 +40,7 @@ __regionReport__.
 
 To cite package __regionReport__ in publications use:
 
-<<<<<<< HEAD
-Leonardo Collado-Torres, Andrew E. Jaffe and Jeffrey T. Leek (2014). regionReport: Generate HTML reports for exploring a set of regions. R package version 1.0.1. https://github.com/lcolladotor/regionReport
-=======
-Leonardo Collado-Torres, Andrew E. Jaffe and Jeffrey T. Leek (2014). regionReport: Generate HTML reports for exploring a set of regions. R package version 1.1.3. https://github.com/lcolladotor/regionReport
->>>>>>> master
+Leonardo Collado-Torres, Andrew E. Jaffe and Jeffrey T. Leek (2014). regionReport: Generate HTML reports for exploring a set of regions. R package version 1.0.3. https://github.com/lcolladotor/regionReport
 
 
 A BibTeX entry for LaTeX users is
@@ -53,8 +49,8 @@ A BibTeX entry for LaTeX users is
     title = {regionReport: Generate HTML reports for exploring a set of regions},
     author = {Leonardo Collado-Torres and Andrew E. Jaffe and Jeffrey T. Leek},
     year = {2014},
-    note = {R package version 1.0.2},
-    url = {https://github.com/lcolladotor/regionReport},
+    url = {http://www.bioconductor.org/packages/release/bioc/html/regionReport.html},
+    note = {https://github.com/lcolladotor/regionReport - R package version 1.0.5},
 }
 
 # Travis CI
