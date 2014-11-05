@@ -13,7 +13,7 @@ c(
         ),
         year = 2014,
         url = "http://www.bioconductor.org/packages/release/bioc/html/regionReport.html",
-        note = pkgVer('regionReport', '1.0.3')
+        note = pkgVer('regionReport', '1.0.4')
     ),
     bibentry(bibtype="manual",
         title = "derfinder: Annotation-agnostic differential expression analysis of RNA-seq data at base-pair resolution",
